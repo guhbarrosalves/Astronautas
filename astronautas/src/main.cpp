@@ -125,7 +125,7 @@ public:
     void adicionarAstronauta(string cpf, int codigo){
         int posAstronauta = buscarAstronauta(cpf);
         int posVoo = buscarVoo(codigo);
-        if(buscarAstronauta(cpf) == -1){
+        if(posAstronauta == -1){
             cout << "ERRO: astronauta " << cpf << " nao cadastrado\n";
             return;
         }
@@ -184,7 +184,7 @@ public:
     }
     void lancarVoo(int codigo){
         int posVoo = buscarVoo(codigo);
-        if(buscarVoo(codigo) == -1){
+        if(posVoo == -1){
             cout << "ERRO: voo " << codigo << " nao cadastrado\n";
             return;
         }
@@ -219,7 +219,7 @@ public:
     }
     void explodirVoo(int codigo){
         int posVoo = buscarVoo(codigo);
-        if(buscarVoo(codigo) == -1){
+        if(posVoo == -1){
             cout << "ERRO: voo " << codigo << " nao cadastrado\n";
             return;
         }
@@ -239,7 +239,7 @@ public:
     }
     void finalizarVoo(int codigo){
         int posVoo = buscarVoo(codigo);
-        if(buscarVoo(codigo) == -1){
+        if(posVoo == -1){
             cout << "ERRO: voo " << codigo << " nao cadastrado\n";
             return;
         }
