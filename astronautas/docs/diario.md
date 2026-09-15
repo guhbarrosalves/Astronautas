@@ -186,7 +186,7 @@ Função main(): Incluir um novo else if no loop para escutar o comando "RELATOR
 
 Importante: Os métodos de salvar, carregar e comandos antigos não sofrem alterações, pois a experiência dos astronautas é recalculada diretamente dos voos.
 
-- Resultado de `testar.sh missao3` e de `testar.sh parte1`:
+- Resultado de `testar.sh missao3` e de `testar.sh parte1`: Tudo passou.
 - Precisei refazer? O que mudou no pedido: Sim, ele esqueceu de colocar o contador dentro do arquivo, apesar de isso estar no prompt.
 
 ## Missão 4: livre
