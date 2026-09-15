@@ -147,9 +147,47 @@ FIM_ASTRONAUTAS
 ## Missão 3: RELATORIO
 
 - Primeira mensagem:
+Este programa em C++11 controla astronautas e voos de uma agência espacial.
+Ele lê comandos da entrada padrão. As classes Astronauta, Voo e Agencia estão
+em src/main.cpp. Os testes em testes/parte1 e testes/testar.sh missao1 e testes/testar.sh missao2 passam.
+
+Quero um novo comando: RELATORIO
+RELATORIO imprime a linha RELATORIO seguida de nove linhas sobre o estado atual:
+
+RELATORIO
+voos planejados: 0
+voos em curso: 0
+voos finalizados com sucesso: 1
+voos finalizados com explosao: 2
+astronautas cadastrados: 4
+astronautas vivos: 2
+astronautas mortos: 2
+astronauta mais experiente: 111 Ana Maria (voos lancados: 1)
+taxa de sucesso: 33%
+
+Regras:
+• A experiência de um astronauta é o número de voos já lançados em que ele estava a bordo.
+Voo ainda planejado não conta. Astronauta morto continua contando. Em caso de empate, vale o cadastrado primeiro. Se ninguém voou: astronauta mais experiente: (nenhum).
+• Taxa de sucesso é a parte inteira de sucessos * 100 / finalizados, onde finalizados são os com sucesso mais os com explosão. Sem voos finalizados: taxa de sucesso: (nenhum voo finalizado).
+Teste: bash testes/testar.sh missao3. Depois: bash testes/testar.sh parte1.
+
+Dois testes desta missão usam a Missão 2, então faça a Missão 2 antes. O teste 04 monta um cenário, pede o RELATORIO e salva em dados_teste.txt. O teste 05, em outra execução, carrega esse arquivo e pede o RELATORIO de novo. A resposta tem que ser a mesma. Um erro comum aqui é guardar a experiência num contador dentro do astronauta e esquecer de gravar esse contador no arquivo.
+
+Não mude nenhum comando que já existe nem a saída deles. Não use nada fora da
+biblioteca padrão.
+Vou conferir com bash testes/testar.sh parte1 e depois com bash testes/testar.sh missao2 e testes/testar.sh missao3. Antes de editar, me diga quais arquivos e quais métodos você vai criar ou alterar, e por quê.
+
 - O plano, resumido:
+Classe Astronauta: Adicionar apenas o método int contarVoosLancados(vector<Voo>& v) para calcular a experiência com base nos voos, evitando alterar o formato do arquivo salvo.
+
+Classe Agencia: Criar o método void relatorio() para exibir as 9 linhas com contagem de voos por estado, status de vivos/mortos, astronauta mais experiente e taxa de sucesso.
+
+Função main(): Incluir um novo else if no loop para escutar o comando "RELATORIO" e chamar agencia.relatorio().
+
+Importante: Os métodos de salvar, carregar e comandos antigos não sofrem alterações, pois a experiência dos astronautas é recalculada diretamente dos voos.
+
 - Resultado de `testar.sh missao3` e de `testar.sh parte1`:
-- Precisei refazer? O que mudou no pedido:
+- Precisei refazer? O que mudou no pedido: Sim, ele esqueceu de colocar o contador dentro do arquivo, apesar de isso estar no prompt.
 
 ## Missão 4: livre
 
@@ -164,5 +202,5 @@ FIM_ASTRONAUTAS
 ## Fechamento
 
 - O que a IA fez que eu não conseguiria fazer sozinho nesse prazo:
-- Onde ela errou ou fez algo que eu não pedi:
-- O que eu faria diferente da próxima vez:
+- Onde ela errou ou fez algo que eu não pedi: 
+- O que eu faria diferente da próxima vez: 
