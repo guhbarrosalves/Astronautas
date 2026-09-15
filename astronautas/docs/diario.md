@@ -28,10 +28,10 @@ A classe agência guarda um vetor com todos os astronautas que pertencem a ela, 
 
 ## Primeiro contato: revisão sem editar
 
-- As três melhorias que a IA sugeriu, em uma linha cada:
-- A que escolhi e por quê:
-- O que mudou no código, e se os seis testes continuaram passando:
-- O que entendi que não sabia antes:
+- As três melhorias que a IA sugeriu, em uma linha cada: Usar true/false em vez de 1/0 para booleanos - Não buscar duas vezes a mesma coisa (linhas 126-128) e para lancarVoo, explodirVoo e finalizarVoo - Evitar repetição de código (DRY).
+- A que escolhi e por quê: Escolhi não buscar duas vezes a mesma coisa, porque evitar repetição de código visava criar uma função.
+- O que mudou no código, e se os seis testes continuaram passando: Mudou que ao invés de eu chamar BuscarVoo ou BuscarAstronauta de novo no primeiro if, eu chamava posVoo e posAstronauta. Os seis testes passaram.
+- O que entendi que não sabia antes: Não entendi nada que não sabia antes, mas apenas uma noção de otimização de código, para evitar chamar algo que já tinha chamado anteriormente.
 
 ## Missão 1: LISTAR_ASTRONAUTAS e HISTORICO
 
