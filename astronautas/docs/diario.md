@@ -35,11 +35,64 @@ A classe agência guarda um vetor com todos os astronautas que pertencem a ela, 
 
 ## Missão 1: LISTAR_ASTRONAUTAS e HISTORICO
 
-- Primeira mensagem (o pedido do plano):
-- O plano que a IA apresentou, resumido:
-- Mudei algo no plano antes de liberar?
-- Resultado de `testar.sh missao1` e de `testar.sh parte1`:
-- Precisei refazer? O que mudou no pedido:
+- Primeira mensagem (o pedido do plano): 
+Este programa em C++11 controla astronautas e voos de uma agência espacial.
+Ele lê comandos da entrada padrão. As classes Astronauta, Voo e Agencia estão
+em src/main.cpp. Os testes em testes/parte1 passam.
+Quero dois comandos novos: LISTAR_ASTRONAUTAS e HISTORICO cpf. A saída exata
+está abaixo.
+
+LISTAR_ASTRONAUTAS mostra todos os astronautas em três grupos, na ordem de cadastro dentro de cada grupo. No grupo disponiveis entram os vivos que não estão em nenhum voo em curso.
+No grupo em voo entram os vivos que estão em um voo em curso, com o código desse voo. No grupo mortos entram os mortos. Grupo vazio mostra (nenhum).
+Os dois exemplos abaixo são do mesmo cenário: Ana voou no 10, que terminou com sucesso, e agora está no 20, em curso. Bruno morreu em outro voo.
+
+LISTA DE ASTRONAUTAS
+== disponiveis ==
+333 Carla Souza (28 anos)
+== em voo ==
+111 Ana Maria (30 anos) - voo 20
+== mortos ==
+222 Bruno Costa (35 anos)
+
+HISTORICO cpf mostra os voos dos quais o astronauta participou, com o estado atual de cada um, na ordem de cadastro dos voos. Participou significa que o voo foi lançado com ele a bordo. Voo só planejado não aparece. Sem voos: (nenhum voo). CPF desconhecido: ERRO: astronauta 999 nao cadastrado.
+
+HISTORICO DE 111 Ana Maria
+voo 10: finalizado com sucesso
+voo 20: em curso
+
+Teste: bash testes/testar.sh missao1. Depois: bash testes/testar.sh parte1.
+
+Não mude nenhum comando que já existe nem a saída deles. Não use nada fora da
+biblioteca padrão.
+
+Vou conferir com bash testes/testar.sh missao1 e depois com
+bash testes/testar.sh parte1.
+
+Antes de editar, me diga quais arquivos e quais métodos você vai criar ou
+alterar, e por quê.
+
+- O plano que a IA apresentou, resumido: 
+Métodos novos na classe Agencia:
+
+void listarAstronautas() — Percorre o vector astronautas em ordem de cadastro e classifica cada um em um dos três grupos:
+
+disponível: vivo e não está em nenhum voo com estado "em curso"
+
+em voo: vivo e está em pelo menos um voo "em curso" (mostra o código desse voo)
+
+morto: não vivo
+
+void historico(string cpf) — Busca o astronauta pelo CPF. Se não existe, imprime ERRO. Se existe, percorre o vector voos em ordem de cadastro e imprime só os voos onde o astronauta estava a bordo e que já foram lançados (estado diferente de "planejado"). Se não há voos, imprime (nenhum voo).
+
+Na main():
+
+Adicionar else if para "LISTAR_ASTRONAUTAS" → chama agencia.listarAstronautas()
+
+Adicionar else if para "HISTORICO" → lê o CPF, chama agencia.historico(cpf)
+
+- Mudei algo no plano antes de liberar? Não.
+- Resultado de `testar.sh missao1` e de `testar.sh parte1`: Todos os testes passaram.
+- Precisei refazer? O que mudou no pedido: Não.
 
 ## Missão 2: SALVAR e CARREGAR
 
