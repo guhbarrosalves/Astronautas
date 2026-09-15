@@ -97,10 +97,52 @@ Adicionar else if para "HISTORICO" → lê o CPF, chama agencia.historico(cpf)
 ## Missão 2: SALVAR e CARREGAR
 
 - Primeira mensagem:
-- O plano, resumido:
-- O formato do arquivo (cole cinco linhas do `dados_teste.txt`):
-- Resultado de `testar.sh missao2` e de `testar.sh parte1`:
-- Precisei refazer? O que mudou no pedido:
+Este programa em C++11 controla astronautas e voos de uma agência espacial.
+Ele lê comandos da entrada padrão. As classes Astronauta, Voo e Agencia estão
+em src/main.cpp. Os testes em testes/parte1 e testes/testar.sh missao1 passam.
+
+Quero dois comandos novos: CARREGAR (nome_do_arquivo) e SALVAR (nome_do_arquivo).
+
+SALVAR nome_do_arquivo grava todos os dados em um arquivo de texto e imprime OK: dados salvos em nome_do_arquivo. Se não conseguir abrir o arquivo para escrita: ERRO: nao foi possivel salvar em nome_do_arquivo.
+
+CARREGAR nome_do_arquivo substitui todos os dados atuais pelos do arquivo e imprime OK: dados carregados de nome_do_arquivo. Se o arquivo não existir: ERRO: nao foi possivel carregar de nome_do_arquivo, e os dados atuais continuam como estavam.
+
+O formato do arquivo é escolha sua, mas antes de escolher, me diga qual seria e porque, desde que seja texto e que carregar depois de salvar reconstrua tudo: astronautas com vivo e disponível, voos com estado e lista de CPFs.
+
+Além disso, me mostre o formato com um exemplo e explique como o programa reconstrói os objetos ao ler.
+
+Teste: bash testes/testar.sh missao2. 
+Depois: bash testes/ testar.sh parte1.
+
+Não mude nenhum comando que já existe nem a saída deles. Não use nada fora da
+biblioteca padrão.
+Vou conferir com bash testes/testar.sh parte1 e depois com
+bash testes/testar.sh missao2. Antes de editar, me diga quais arquivos e quais métodos você vai criar ou alterar, e por quê.
+
+- O plano, resumido: 
+Formato do Arquivo: Utiliza blocos delimitados (ASTRONAUTAS/FIM_ASTRONAUTAS e VOOS/FIM_VOOS), salvando dados simples por linha e separando CPFs de voos por vírgulas.
+
+Reconstrução ao Ler: O sistema lê os dados salvos utilizando operadores padrão e getline para nomes, recriando os objetos conforme o arquivo.
+
+Modificações Necessárias:
+
+Adicionar setters nas classes Astronauta e Voo.
+
+Criar os métodos salvar e carregar na classe Agencia.
+
+Atualizar a main() com os comandos SALVAR e CARREGAR.
+
+Restrições: Métodos existentes, saídas de comandos e arquivos em testes/ não devem ser modificados.
+
+- O formato do arquivo (cole cinco linhas do `dados_teste.txt`): 
+ASTRONAUTAS
+111 30 1 1 Ana Maria
+222 35 0 0 Bruno Costa
+333 28 1 1 Carla Souza
+FIM_ASTRONAUTAS
+
+- Resultado de `testar.sh missao2` e de `testar.sh parte1`: Todos os testes passaram.
+- Precisei refazer? O que mudou no pedido: Não.
 
 ## Missão 3: RELATORIO
 

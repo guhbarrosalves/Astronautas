@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
+#include <sstream>
 
 using namespace std;    
 
@@ -32,6 +34,8 @@ public:
         if(vivo)
             disponivel = 1;
     }
+    void setVivo(bool v){ vivo = v; }
+    void setDisponivel(bool d){ disponivel = d; }
     void morrer(){  // fica morto e indisponivel
         vivo = 0;
         disponivel = 0;
@@ -80,6 +84,7 @@ public:
     void finalizar(){
         estado = "finalizado com sucesso";
     }
+    void setEstado(string e){ estado = e; }
 };
 
 class Agencia {
@@ -388,6 +393,103 @@ public:
         }
         if(!algum) cout << "(nenhum voo)\n";
     }
+    void salvar(string nomeArquivo){
+        ofstream arq(nomeArquivo);
+        if(!arq.is_open()){
+            cout << "ERRO: nao foi possivel salvar em " << nomeArquivo << endl;
+            return;
+        }
+        arq << "ASTRONAUTAS\n";
+        for(size_t i=0; i<astronautas.size(); i++){
+            arq << astronautas[i].getCpf() << " "
+                << astronautas[i].getIdade() << " "
+                << (astronautas[i].estaVivo() ? 1 : 0) << " "
+                << (astronautas[i].estaDisponivel() ? 1 : 0) << " "
+                << astronautas[i].getNome() << "\n";
+        }
+        arq << "FIM_ASTRONAUTAS\n";
+        arq << "VOOS\n";
+        for(size_t i=0; i<voos.size(); i++){
+            arq << voos[i].getCodigo() << " " << voos[i].getEstado();
+            for(int j=0; j<voos[i].getQuantidadeAstronautas(); j++){
+                arq << " " << voos[i].getCpf(j);
+            }
+            arq << "\n";
+        }
+        arq << "FIM_VOOS\n";
+        arq.close();
+        cout << "OK: dados salvos em " << nomeArquivo << endl;
+    }
+    void carregar(string nomeArquivo){
+        ifstream arq(nomeArquivo);
+        if(!arq.is_open()){
+            cout << "ERRO: nao foi possivel carregar de " << nomeArquivo << endl;
+            return;
+        }
+
+        vector<Astronauta> novosAstronautas;
+        vector<Voo> novosVoos;
+
+        string linha;
+        getline(arq, linha); // linha "ASTRONAUTAS"
+        while(getline(arq, linha)){
+            if(linha == "FIM_ASTRONAUTAS") break;
+            if(linha.empty()) continue;
+            istringstream iss(linha);
+            string cpf, nome;
+            int idade, vivoInt, dispInt;
+            iss >> cpf >> idade >> vivoInt >> dispInt;
+            getline(iss, nome); // pega o resto da linha: " " + nome
+            if(!nome.empty() && nome[0] == ' ')
+                nome = nome.substr(1);
+            Astronauta a(cpf, nome, idade);
+            a.setVivo(vivoInt == 1);
+            a.setDisponivel(dispInt == 1);
+            novosAstronautas.push_back(a);
+        }
+
+        getline(arq, linha); // linha "VOOS"
+        while(getline(arq, linha)){
+            if(linha == "FIM_VOOS") break;
+            if(linha.empty()) continue;
+            istringstream iss(linha);
+            int codigo;
+            iss >> codigo;
+            string token;
+            vector<string> tokens;
+            while(iss >> token){
+                tokens.push_back(token);
+            }
+            // estado = tokens que contem pelo menos uma letra; o resto e CPF
+            string est;
+            size_t idx = 0;
+            while(idx < tokens.size()){
+                bool soDigitos = true;
+                for(size_t k=0; k<tokens[idx].size(); k++){
+                    if(!isdigit(tokens[idx][k])){
+                        soDigitos = false;
+                        break;
+                    }
+                }
+                if(soDigitos) break;
+                if(!est.empty()) est += " ";
+                est += tokens[idx];
+                idx++;
+            }
+            Voo v(codigo);
+            v.setEstado(est);
+            while(idx < tokens.size()){
+                v.adicionarAstronauta(tokens[idx]);
+                idx++;
+            }
+            novosVoos.push_back(v);
+        }
+
+        arq.close();
+        astronautas = novosAstronautas;
+        voos = novosVoos;
+        cout << "OK: dados carregados de " << nomeArquivo << endl;
+    }
 };
 // Depois, em cada comando, apague a linha do cout com "TODO" e descomente
 // a chamada ao metodo da Agencia.
@@ -445,6 +547,14 @@ int main() {
             string cpf;
             cin >> cpf;
             agencia.historico(cpf);
+        } else if (comando == "SALVAR") {
+            string arquivo;
+            cin >> arquivo;
+            agencia.salvar(arquivo);
+        } else if (comando == "CARREGAR") {
+            string arquivo;
+            cin >> arquivo;
+            agencia.carregar(arquivo);
         } else {
             cout << "ERRO: comando desconhecido " << comando << endl;
         }
