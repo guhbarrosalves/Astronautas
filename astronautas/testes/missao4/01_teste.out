@@ -1,0 +1,36 @@
+OK: cenario de demonstracao carregado
+LISTA DE VOOS
+== planejado ==
+Voo 30: sem astronautas
+== em curso ==
+(nenhum)
+== finalizado com sucesso ==
+Voo 10: 111 Ana Maria, 222 Bruno Costa
+Voo 40: 444 Diego Lima
+== finalizado com explosao ==
+Voo 20: 333 Carla Souza, 444 Diego Lima
+LISTA DE ASTRONAUTAS
+== disponiveis ==
+111 Ana Maria (30 anos)
+222 Bruno Costa (35 anos)
+== em voo ==
+(nenhum)
+== mortos ==
+333 Carla Souza (28 anos)
+444 Diego Lima (41 anos)
+ASTRONAUTAS MORTOS
+333 Carla Souza - voos: 20
+444 Diego Lima - voos: 20 40
+HISTORICO DE 444 Diego Lima
+voo 20: finalizado com explosao
+voo 40: finalizado com sucesso
+RELATORIO
+voos planejados: 1
+voos em curso: 0
+voos finalizados com sucesso: 2
+voos finalizados com explosao: 1
+astronautas cadastrados: 4
+astronautas vivos: 2
+astronautas mortos: 2
+astronauta mais experiente: 444 Diego Lima (voos lancados: 2)
+taxa de sucesso: 66%

@@ -553,6 +553,46 @@ public:
         voos = novosVoos;
         cout << "OK: dados carregados de " << nomeArquivo << endl;
     }
+    void demo(){
+        if(astronautas.size() > 0 || voos.size() > 0){
+            cout << "ERRO: ha dados cadastrados" << endl;
+            return;
+        }
+
+        astronautas.push_back(Astronauta("111", "Ana Maria", 30));
+        astronautas.push_back(Astronauta("222", "Bruno Costa", 35));
+
+        Astronauta a3("333", "Carla Souza", 28);
+        a3.setVivo(false);
+        a3.setDisponivel(false);
+        astronautas.push_back(a3);
+
+        Astronauta a4("444", "Diego Lima", 41);
+        a4.setVivo(false);
+        a4.setDisponivel(false);
+        astronautas.push_back(a4);
+
+        Voo v10(10);
+        v10.adicionarAstronauta("111");
+        v10.adicionarAstronauta("222");
+        v10.setEstado("finalizado com sucesso");
+        voos.push_back(v10);
+
+        Voo v20(20);
+        v20.adicionarAstronauta("333");
+        v20.adicionarAstronauta("444");
+        v20.setEstado("finalizado com explosao");
+        voos.push_back(v20);
+
+        voos.push_back(Voo(30));
+
+        Voo v40(40);
+        v40.adicionarAstronauta("444");
+        v40.setEstado("finalizado com sucesso");
+        voos.push_back(v40);
+
+        cout << "OK: cenario de demonstracao carregado" << endl;
+    }
 };
 // Depois, em cada comando, apague a linha do cout com "TODO" e descomente
 // a chamada ao metodo da Agencia.
@@ -620,6 +660,8 @@ int main() {
             string arquivo;
             cin >> arquivo;
             agencia.carregar(arquivo);
+        } else if (comando == "DEMO") {
+            agencia.demo();
         } else {
             cout << "ERRO: comando desconhecido " << comando << endl;
         }

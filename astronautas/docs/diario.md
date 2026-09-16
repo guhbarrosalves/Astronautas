@@ -191,16 +191,66 @@ Importante: Os métodos de salvar, carregar e comandos antigos não sofrem alter
 
 ## Missão 4: livre
 
-- O que escolhi e por quê:
+- O que escolhi e por quê: Escolhi a funcionalidade demo que cria um cenário. Escolhi ela porque é uma das funcionalidades mais fáceis e que não há grande possibilidade de quebrar o código e os testes.
 - O comando novo, a saída que eu esperava e o nome do meu arquivo de comandos
-  (escritos antes de pedir):
-- Primeira mensagem:
-- O que veio, comparado com o que eu esperava:
-- `testar.sh parte1` continuou passando?
-- Aceitei, ajustei ou descartei? Por quê:
+  (escritos antes de pedir): comando novo DEMO. nome do arquivo: testes/missao4/01_teste.in
+  Saída esperada:
+  OK: cenario de demonstracao carregado
+LISTA DE VOOS
+== planejado ==
+Voo 30: sem astronautas
+== em curso ==
+(nenhum)
+== finalizado com sucesso ==
+Voo 10: 111 Ana Maria, 222 Bruno Costa
+Voo 40: 444 Diego Lima
+== finalizado com explosao ==
+Voo 20: 333 Carla Souza, 444 Diego Lima
+LISTA DE ASTRONAUTAS
+== disponiveis ==
+111 Ana Maria (30 anos)
+222 Bruno Costa (35 anos)
+== em voo ==
+(nenhum)
+== mortos ==
+333 Carla Souza (28 anos)
+444 Diego Lima (41 anos)
+ASTRONAUTAS MORTOS
+333 Carla Souza - voos: 20
+444 Diego Lima - voos: 20 40
+HISTORICO DE 444 Diego Lima
+voo 20: finalizado com explosao
+voo 40: finalizado com sucesso
+RELATORIO
+voos planejados: 1
+voos em curso: 0
+voos finalizados com sucesso: 2
+voos finalizados com explosao: 1
+astronautas cadastrados: 4
+astronautas vivos: 2
+astronautas mortos: 2
+astronauta mais experiente: 444 Diego Lima (voos lancados: 2)
+taxa de sucesso: 66%
+
+- Primeira mensagem: 
+Este programa em C++11 controla astronautas e voos de uma agência espacial.
+Ele lê comandos da entrada padrão. As classes Astronauta, Voo e Agencia estão
+em src/main.cpp. Os testes em testes/parte1, testes/missao1, testes/missao2, testes/missao3 passam. Quero uma nova funcionalidade para o código: A DEMO
+
+Teste: bash testes/testar.sh missao1, missao2, missao3. Depois: bash testes/testar.sh parte1.
+
+Não mude nenhum comando que já existe nem a saída deles. Não use nada fora da biblioteca padrão.
+
+Vou conferir com bash testes/testar.sh missao1, missao2, missao3 e depois com bash testes/testar.sh parte1.
+
+Antes de editar, me diga quais arquivos e quais métodos você vai criar ou alterar, e por quê.
+
+- O que veio, comparado com o que eu esperava:  Tudo ok.
+- `testar.sh parte1` continuou passando? Sim.
+- Aceitei, ajustei ou descartei? Por quê: Aceitei, porque deu tudo certo.
 
 ## Fechamento
 
-- O que a IA fez que eu não conseguiria fazer sozinho nesse prazo:
-- Onde ela errou ou fez algo que eu não pedi: 
-- O que eu faria diferente da próxima vez: 
+- O que a IA fez que eu não conseguiria fazer sozinho nesse prazo: Toda a parte das missões. Acredito que talvez fosse possível, mas custaria muito tempo e talvez fizesse tudo e passasse sufoco para conseguir realizar tudo. 
+- Onde ela errou ou fez algo que eu não pedi: Na missão 3, quando houve o fato de não guardar o contador no arquivo. 
+- O que eu faria diferente da próxima vez: Não sei.
